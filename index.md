@@ -1,0 +1,54 @@
+---
+title       : Assets Comparison
+subtitle    : A simple app
+author      : CX
+job         : 
+framework   : revealjs      # {io2012, html5slides, shower, dzslides, ...}
+revealjs    : {theme: solarized}
+transition  : fade
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : [mathjax]            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+---
+## Assets Comparison
+
+<h3> A simple app</h3>
+<h4> CX </h4>
+
+
+--- 
+## What the app does
+
+1. Plot a single asset from a specific sorce in a specific date range
+2. Plot two assets together if their price range are close
+3. Plot two assets separately if their price range are far from each other
+
+--- .class #id 
+
+## How it is done
+
+1. Using <quantmod> package to fetch the data
+2. Using chartSeries function to plot the data
+
+--- .class #id
+
+## Problem and future development
+
+1. At this point, only 'yahoo' source works, ther sources cause problem when app is deployed, though they work find locally
+2. More features such as log scale plot, technical indicators, can be added later
+
+--- .class #id
+
+## An example
+Assets: SPY, IBM
+
+```r
+library(quantmod)
+p1 <- getSymbols('SPY', auto.assign = FALSE)
+p2 <- getSymbols('IBM', auto.assign = FALSE)
+chartSeries(as.xts(merge(p1, p2)))
+```
+
+![plot of chunk unnamed-chunk-1](assets/fig/unnamed-chunk-1.png) 
